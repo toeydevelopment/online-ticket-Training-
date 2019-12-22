@@ -17,14 +17,8 @@ import Seats from "../../modules/seats/index.vue";
 import firebase from "firebase";
 
 const config = {
-  //   apiKey: "AIzaSyBYjoNS6bi6_TbnIk4_C36KXW2VI8MbGws",
-  //   authDomain: "mnd-controldata.firebaseapp.com",
   databaseURL: "https://mnd-controldata.firebaseio.com",
   projectId: "mnd-controldata"
-  //   storageBucket: "mnd-controldata.appspot.com",
-  //   messagingSenderId: "534651233605",
-  //   appId: "1:534651233605:web:cf4dbac7892289fbd00a2c",
-  //   measurementId: "G-TSVMSCM6B0"
 };
 
 firebase.initializeApp(config);
