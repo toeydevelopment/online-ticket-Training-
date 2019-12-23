@@ -35,7 +35,7 @@ export default Vue.extend({
         "button",
         {
           "is-danger": !seat.seated,
-          "is-primary": idx == -1 ? false : true
+          "is-primary": idx != -1
         }
       ];
     },
