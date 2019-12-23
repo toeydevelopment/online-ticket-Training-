@@ -1,3 +1,9 @@
+interface ISeat {
+  id: string;
+  seated: boolean;
+  price: number;
+}
+
 const movies: any = {
   movies: [
     { id: "avenger", where: require("./avengers.jpg") },
@@ -53,4 +59,4 @@ const movies: any = {
   ]
 };
 
-export { movies };
+export { movies, ISeat };

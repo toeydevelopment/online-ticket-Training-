@@ -1,32 +1,54 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+  <div>
+    <section class="section">
+      <div class="container">
+        <div class="box">
+          <h1 class="title">ControlData Online ticket</h1>
+          <movies @chosenMovie="handleChosenMovie" />
+          <seats
+            :selectedMovieId="selectedMovie"
+            @chosenSeat="handleChosenSeat"
+            :selectedSeats="selectedSeats"
+          />
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import Vue from "vue";
+import Movies from "./components/movies.component.vue";
+import Seats from "./components/seats.components.vue";
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default Vue.extend({
+  data: () => ({
+    selectedMovie: "",
+    selectedSeats: [] as Array<any>
+  }),
+  components: {
+    movies: Movies,
+    seats: Seats
+  },
+  methods: {
+    handleChosenMovie(movieId: string) {
+      this.selectedMovie = movieId;
+    },
+    handleChosenSeat(seat: any) {
+      const ids = this.selectedSeats.map(
+        (selectedSeat: { id: string; price: number; seated: boolean }) => {
+          return selectedSeat.id;
+        }
+      );
+      const idx = ids.indexOf(seat.id);
+      if (idx == -1) {
+        this.selectedSeats.push(seat);
+      } else {
+        this.selectedSeats.splice(idx, 1);
+      }
     }
   }
-}
-</style>
+});
+</script>
+
+<style lang="scss"></style>
